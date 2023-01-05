@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spring-MVC/Hibernate/Maven</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<header>
+		<nav
+			class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+			style="border-bottom: solid 2px;">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html" style="margin-top: 5px;">ProductApp</a>
+				<div
+					class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+					style="margin-top: 20px;">
+					<ul class="navbar-nav flex-grow-1">
+						<li class="nav-item"
+							style="margin-left: 10px; margin-right: 20px; list-style: none;"><a
+							class="nav-link text-dark" href="products/list">Products</a></li>
+						<li class="nav-item d-flex justify-content-end"
+							style="list-style: none; margin-left: 5px;"><a
+							class="nav-link text-dark " href="categories.html">Categories</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container" style="min-height: 600px;">
+		<main role="main" class="pb-3">
+			<div class="row">
+				<div class="my-3 d-flex justify-content-end">
+					<a class="btn btn-success" style="margin-left:900px;" th:href="@{getPageProductAdd}">Create
+						One Product</a>
+				</div>
+				<hr/>
+				<div class="col-md-4 my-2" th:each="data : ${datas}">
+					<br />
+					<div class="card" style="width: 18rem;">
+						<img  src="${data.imageUrl}" 
+							style="height: 200px; width: 200px; margin-bottom:10px;margin-left:-10px;"></img>
+						<div class="card-body">
+							<div class="row">
+								<strong><div class="card-title col-9" th:text="${data.productName}" ></div></strong>
+								<i><p class="card-text" th:text="${data.description}"></p></i>
+							</div>
+							<div class="card-title col-3 text-danger" style="margin-left:130px;margin-bottom:10px;" th:text="${data.price}"><span style="margin-top:-12px;">Tl$</span></div>
+							<div class="srow">
+								<a class="btn btn-info " style="width: 100%;"
+									href="details.html">Get Details</a>
+							</div>
+							<hr />
+							<div class="row">
+								<a class="btn btn-warning col-4" style="margin-left:30px;"
+									th:href="@{update/{id}(id=${data.id})}">Update</a> <a
+									class="btn btn-danger col-4"
+									th:href="@{productDelete/{id}(id=${data.id})}">Delete</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2022 - ProductApp - <a>Privacy</a>
+		</div>
+	</footer>
+</body>
+</html>
